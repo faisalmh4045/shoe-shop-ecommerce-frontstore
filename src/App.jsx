@@ -1,11 +1,15 @@
-import { Button } from "./components/ui/button";
+import { RouterProvider } from "react-router";
+import router from "./routes";
+import AuthListener from "./components/AuthListener";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 function App() {
   return (
-    <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <Button variant="outline">Click me</Button>
-    </>
+    <Provider store={store}>
+      <AuthListener />
+      <RouterProvider router={router} />
+    </Provider>
   );
 }
 

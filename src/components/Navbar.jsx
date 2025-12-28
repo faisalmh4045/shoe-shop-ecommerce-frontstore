@@ -1,0 +1,39 @@
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsAuthenticated, selectUser, signOut } from "@/store/authSlice";
+
+const Navbar = () => {
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  const navigate = useNavigate();
+  const [signingOut, setSigningOut] = useState(false);
+
+  const handleSignOut = async () => {
+    setSigningOut(true);
+    try {
+      await dispatch(signOut());
+      navigate("/", { replace: true });
+    } catch (err) {
+      console.error("Sign out failed", err);
+    } finally {
+      setSigningOut(false);
+    }
+  };
+
+  return (
+    <div>
+      {isAuthenticated && (
+        <div className="flex items-center gap-4">
+          <span>{user?.user_metadata?.full_name || user?.email}</span>
+          <button onClick={handleSignOut}>
+            {signingOut ? "Signing out..." : "Sign Out"}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Navbar;
