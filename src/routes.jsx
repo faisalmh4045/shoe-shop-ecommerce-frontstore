@@ -9,11 +9,13 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import UpdatePasswordPage from "./pages/UpdatePasswordPage";
+import ProductListingPage from "./pages/ProductListingPage";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<h1>Homepage</h1>} />
+      <Route path="category/:category" element={<ProductListingPage />} />
 
       <Route element={<GuestRoute />}>
         <Route path="login" element={<LoginPage />} />

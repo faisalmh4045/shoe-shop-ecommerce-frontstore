@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsAuthenticated, selectUser, signOut } from "@/store/authSlice";
+import { useQuery } from "@tanstack/react-query";
+import { getCategories } from "@/lib/queries/getCategories";
 
 const Navbar = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -9,6 +11,14 @@ const Navbar = () => {
   const user = useSelector(selectUser);
   const navigate = useNavigate();
   const [signingOut, setSigningOut] = useState(false);
+
+  // fetch categories
+  const { data: categories = [], isLoading: categoriesLoading } = useQuery({
+    queryKey: ["navbar-categories"],
+    queryFn: getCategories,
+  });
+
+  const navCategories = categories.filter((cat) => cat.include_in_nav);
 
   const handleSignOut = async () => {
     setSigningOut(true);
@@ -24,6 +34,18 @@ const Navbar = () => {
 
   return (
     <div>
+      <ul>
+        {categoriesLoading ? (
+          <li>categories loading</li>
+        ) : (
+          navCategories.length > 0 &&
+          navCategories.map((category) => (
+            <li key={category.id}>
+              <Link to={`/category/${category.slug}`}>{category.title}</Link>
+            </li>
+          ))
+        )}
+      </ul>
       {isAuthenticated && (
         <div className="flex items-center gap-4">
           <span>{user?.user_metadata?.full_name || user?.email}</span>
