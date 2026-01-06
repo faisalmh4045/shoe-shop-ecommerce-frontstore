@@ -9,11 +9,14 @@ import ProductHeader from "@/components/ProductDetailsPage/ProductHeader";
 import VariantSelectors from "@/components/ProductDetailsPage/VariantSelectors";
 import QuantitySelector from "@/components/ProductDetailsPage/QuantitySelector";
 import AddToCartButton from "@/components/ProductDetailsPage/AddToCartButton";
+import { useDispatch } from "react-redux";
+import { addItem } from "@/store/cartSlice";
 
 const ProductDetailsPage = () => {
   const { productSlug } = useParams();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [quantity, setQuantity] = useState(1);
   const [selectedMainImage, setSelectedMainImage] = useState(0);
@@ -100,18 +103,19 @@ const ProductDetailsPage = () => {
 
   // Handle Add to Cart
   const handleAddToCart = () => {
-    const cartData = {
-      productId: product.id,
-      variantId: currentVariant?.variant_id || null,
-      quantity: quantity,
-      title: product.title,
-      price: product.price,
-      image: currentImages[0]?.image_url || "",
-      attributes: isConfigurable
-        ? currentVariant?.attributes || []
-        : attributes || [],
-    };
-    console.log(cartData);
+    dispatch(
+      addItem({
+        productId: product.id,
+        variantId: currentVariant?.variant_id || null,
+        quantity: quantity,
+        title: product.title,
+        price: product.price,
+        image: currentImages[0]?.image_url || "",
+        attributes: isConfigurable
+          ? currentVariant?.attributes || []
+          : attributes || [],
+      }),
+    );
     alert(`Added ${quantity} x ${product.title} to cart!`);
   };
 

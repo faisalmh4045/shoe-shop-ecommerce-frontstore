@@ -11,6 +11,7 @@ import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import UpdatePasswordPage from "./pages/UpdatePasswordPage";
 import ProductListingPage from "./pages/ProductListingPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
+import CartPage from "./pages/CartPage";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +22,7 @@ export const router = createBrowserRouter(
         path="category/:category/:productSlug"
         element={<ProductDetailsPage />}
       />
+      <Route path="cart" element={<CartPage />} />
 
       <Route element={<GuestRoute />}>
         <Route path="login" element={<LoginPage />} />
