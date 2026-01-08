@@ -12,6 +12,8 @@ import UpdatePasswordPage from "./pages/UpdatePasswordPage";
 import ProductListingPage from "./pages/ProductListingPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import CartPage from "./pages/CartPage";
+import CheckoutPage from "./pages/CheckoutPage";
+import CheckoutSuccessPage from "./pages/CheckoutSuccessPage";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +25,11 @@ export const router = createBrowserRouter(
         element={<ProductDetailsPage />}
       />
       <Route path="cart" element={<CartPage />} />
+      <Route path="checkout" element={<CheckoutPage />} />
+      <Route
+        path="checkout/success/:orderNumber"
+        element={<CheckoutSuccessPage />}
+      />
 
       <Route element={<GuestRoute />}>
         <Route path="login" element={<LoginPage />} />
