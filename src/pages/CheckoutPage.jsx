@@ -14,6 +14,7 @@ import { OrderSummary } from "@/components/checkout/OrderSummary";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ShoppingBag } from "lucide-react";
 import { useCreateOrderMutation } from "@/hooks/useMutations";
+import { useStripePayment } from "@/hooks/useStripePayment";
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const CheckoutPage = () => {
   const user = useSelector(selectUser);
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const cartItems = useSelector(selectCartItems);
+  const stripePayment = useStripePayment();
   const createOrderMutation = useCreateOrderMutation();
 
   const [guestEmail, setGuestEmail] = useState("");
@@ -102,6 +104,31 @@ const CheckoutPage = () => {
 
   const handlePaymentMethodChange = async (newPaymentMethod) => {
     setPaymentMethod(newPaymentMethod);
+
+    if (newPaymentMethod === "STRIPE") {
+      handleStripeInit();
+    } else {
+      stripePayment.reset();
+    }
+  };
+
+  const handleStripeInit = async () => {
+    const orderData = prepareOrderData();
+    if (!orderData) {
+      setPaymentMethod("");
+      return;
+    }
+
+    try {
+      await stripePayment.initializePayment({
+        ...orderData,
+        paymentMethod: "STRIPE",
+      });
+    } catch (err) {
+      console.error(err);
+      alert("Failed to set up Stripe payment.");
+      setPaymentMethod("COD");
+    }
   };
 
   const handleCODOrder = async () => {
@@ -111,6 +138,7 @@ const CheckoutPage = () => {
     createOrderMutation.mutate(
       {
         orderData: { ...orderData, paymentMethod: "COD" },
+        options: { status: "NEW" },
       },
       {
         onSuccess: (result) => {
@@ -186,6 +214,7 @@ const CheckoutPage = () => {
           <PaymentMethodSection
             paymentMethod={paymentMethod}
             onChange={handlePaymentMethodChange}
+            stripePayment={stripePayment}
           />
 
           {paymentMethod === "COD" && (
