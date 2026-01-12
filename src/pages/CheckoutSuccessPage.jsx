@@ -88,7 +88,7 @@ const CheckoutSuccessPage = () => {
             </Link>
           </Button>
           <Button asChild variant="outline" className="gap-2">
-            <Link to={`/track-order/${order.orderNumber}`}>
+            <Link to={`/track-order/${order.orderNumber}?email=${email}`}>
               <Package size={16} />
               Track Order
             </Link>

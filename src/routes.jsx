@@ -15,6 +15,8 @@ import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import CheckoutSuccessPage from "./pages/CheckoutSuccessPage";
 import CompletionPage from "./pages/CompletionPage";
+import TrackOrderPage from "./pages/TrackOrderPage";
+import OrderDetailsPage from "./pages/OrderDetailsPage";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,6 +34,8 @@ export const router = createBrowserRouter(
         path="checkout/success/:orderNumber"
         element={<CheckoutSuccessPage />}
       />
+      <Route path="track-order" element={<TrackOrderPage />} />
+      <Route path="track-order/:orderNumber" element={<OrderDetailsPage />} />
 
       <Route element={<GuestRoute />}>
         <Route path="login" element={<LoginPage />} />
