@@ -2,14 +2,9 @@ import { Navigate, Outlet } from "react-router";
 import { useSelector } from "react-redux";
 import { selectIsAuthenticated } from "@/store/authSlice";
 
-const GuestRoute = () => {
+const PrivateRoute = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
-
-  return isAuthenticated ? (
-    <Navigate to="/account/profile" replace />
-  ) : (
-    <Outlet />
-  );
+  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
 };
 
-export default GuestRoute;
+export default PrivateRoute;
