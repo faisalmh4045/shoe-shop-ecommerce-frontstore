@@ -12,8 +12,14 @@ export const getOrders = async (userId) => {
       `
       id,
       order_number,
+      placed_at,
       order_status,
-      placed_at
+      payment_method,
+      total,
+      items:order_items(
+        id,
+        quantity
+      )
     `,
     )
     .eq("user_id", userId)
@@ -31,6 +37,9 @@ export const getOrders = async (userId) => {
     orderNumber: order.order_number,
     placedAt: order.placed_at,
     orderStatus: order.order_status,
+    paymentMethod: order.payment_method,
+    total: order.total,
+    itemCount: order.items?.length || 0,
   }));
 
   return transformedOrders;
