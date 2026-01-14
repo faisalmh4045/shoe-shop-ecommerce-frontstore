@@ -66,6 +66,13 @@ export const updatePassword = (password) => async () => {
   return true;
 };
 
+export const updateName = (fullName) => async (dispatch) => {
+  const { data, error } = await authService.updateFullName(fullName);
+  if (error) throw error;
+  if (data?.user) dispatch(setSession({ ...data }));
+  return true;
+};
+
 export const sendResetPasswordEmail = (email) => async () => {
   const { error } = await authService.resetPasswordForEmail(email);
   if (error) throw error;

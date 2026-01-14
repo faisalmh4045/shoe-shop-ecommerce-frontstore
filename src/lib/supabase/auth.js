@@ -33,6 +33,12 @@ const authService = {
     return supabase.auth.updateUser({ password });
   },
 
+  updateFullName(fullName) {
+    return supabase.auth.updateUser({
+      data: { full_name: fullName },
+    });
+  },
+
   resetPasswordForEmail(email) {
     return supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${window.location.origin}/update-password`,
