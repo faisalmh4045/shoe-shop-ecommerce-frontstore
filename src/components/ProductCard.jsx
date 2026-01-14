@@ -4,8 +4,12 @@ import { Card, CardContent } from "./ui/card";
 const ProductCard = ({ product, categorySlug }) => {
   const { slug, image, title, price } = product;
 
+  const href = categorySlug
+    ? `/category/${categorySlug}/${slug}`
+    : `/product/${slug}`;
+
   return (
-    <Link to={`/category/${categorySlug}/${slug}`}>
+    <Link to={href}>
       <Card className="overflow-hidden border-0 p-0">
         <CardContent className="p-0">
           <div className="aspect-video lg:aspect-square">

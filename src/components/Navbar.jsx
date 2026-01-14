@@ -47,9 +47,11 @@ const Navbar = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    setSearchQuery("");
-    setIsSearchOpen(false);
-    console.log(searchQuery);
+
+    if (searchQuery.trim()) {
+      navigate(`/search?query=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery("");
+    }
   };
 
   const handleSignOut = async () => {

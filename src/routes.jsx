@@ -23,6 +23,7 @@ import AccountPage from "./pages/AccountPage";
 import OrdersTab from "./pages/account/OrdersTab";
 import ProfileTab from "./pages/account/ProfileTab";
 import AccountOrderDetailsPage from "./pages/account/AccountOrderDetailsPage";
+import SearchPage from "./pages/SearchPage";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,6 +34,8 @@ export const router = createBrowserRouter(
         path="category/:category/:productSlug"
         element={<ProductDetailsPage />}
       />
+      <Route path="product/:productSlug" element={<ProductDetailsPage />} />
+      <Route path="search" element={<SearchPage />} />
       <Route path="cart" element={<CartPage />} />
       <Route path="checkout" element={<CheckoutPage />} />
       <Route path="checkout/completion" element={<CompletionPage />} />
