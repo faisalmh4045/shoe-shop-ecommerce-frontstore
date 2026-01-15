@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { useParams, useSearchParams, useNavigate } from "react-router";
-import { getProductBySlug } from "@/lib/queries/getProductBySlug";
+import { useProductDetailsQuery } from "@/hooks/useQueries";
 import { Separator } from "@/components/ui/separator";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import ProductGallery from "@/components/ProductDetailsPage/ProductGallery";
@@ -21,12 +20,7 @@ const ProductDetailsPage = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedMainImage, setSelectedMainImage] = useState(0);
 
-  // Fetch product data
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["product", productSlug],
-    queryFn: () => getProductBySlug(productSlug),
-    enabled: !!productSlug,
-  });
+  const { data, isLoading, error } = useProductDetailsQuery(productSlug);
 
   if (isLoading) return <LoadingSpinner message="Loading product" />;
   if (error) {

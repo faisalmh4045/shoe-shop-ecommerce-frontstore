@@ -10,7 +10,7 @@ export const getPLPProducts = async ({
     p_category_slug: categorySlug,
     p_page: page,
     p_sort: sort,
-    p_filters: JSON.stringify(serializedFilters),
+    p_filters: serializedFilters,
   });
 
   if (error) {

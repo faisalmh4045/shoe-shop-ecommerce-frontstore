@@ -1,6 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
 import { useParams, useSearchParams, Link } from "react-router";
-import { getOrderDetails } from "@/lib/queries/getOrderDetails";
+import { useOrderDetailsQuery } from "@/hooks/useQueries";
 import { Package, AlertCircle } from "lucide-react";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import OrderDetails from "@/components/order-details/OrderDetails";
@@ -15,12 +14,7 @@ const OrderDetailsPage = () => {
     data: order,
     isLoading,
     error,
-  } = useQuery({
-    queryKey: ["order-details", orderNumber, email],
-    queryFn: () => getOrderDetails(orderNumber, email),
-    enabled: !!orderNumber && !!email,
-    staleTime: 0,
-  });
+  } = useOrderDetailsQuery(orderNumber, email);
 
   if (!email) {
     return (

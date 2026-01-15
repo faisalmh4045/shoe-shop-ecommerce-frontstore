@@ -1,11 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
 import { useSearchParams, useNavigate, Link } from "react-router";
-import { searchProducts } from "@/lib/queries/searchProducts";
 import { Search as SearchIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Pagination from "@/components/Pagination";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import ProductCard from "@/components/ProductCard";
+import { useSearchProductsQuery } from "@/hooks/useQueries";
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
@@ -15,11 +14,7 @@ const SearchPage = () => {
   const page = Number(searchParams.get("page")) || 1;
 
   // Fetch search results
-  const { data: searchData, isLoading } = useQuery({
-    queryKey: ["search-products", query, page],
-    queryFn: () => searchProducts(query, page),
-    enabled: query.length > 0,
-  });
+  const { data: searchData, isLoading } = useSearchProductsQuery(query, page);
 
   const products = searchData?.products || [];
   const totalProducts = searchData?.total || 0;

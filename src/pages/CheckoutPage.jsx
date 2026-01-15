@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router";
 import { selectCartItems, clearCart } from "@/store/cartSlice";
 import { selectUser, selectIsAuthenticated } from "@/store/authSlice";
-import { getCartProducts } from "@/lib/queries/getCartProducts";
+import { useCartProductsQuery } from "@/hooks/useQueries";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { AccountSection } from "@/components/checkout/AccountSection";
 import { ShippingSection } from "@/components/checkout/ShippingSection";
@@ -45,12 +44,9 @@ const CheckoutPage = () => {
     postalCode: "",
   });
 
-  // Fetch cart products
-  const { data: cartItemsWithDetails = [], isLoading } = useQuery({
-    queryKey: ["cart-products", cartItems],
-    queryFn: () => getCartProducts(cartItems),
-    enabled: cartItems.length > 0,
-  });
+  // Fetch detailed information for the cart items
+  const { data: cartItemsWithDetails = [], isLoading } =
+    useCartProductsQuery(cartItems);
 
   // Calculate totals
   const subtotal = cartItemsWithDetails.reduce(

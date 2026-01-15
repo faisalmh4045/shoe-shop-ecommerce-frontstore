@@ -1,6 +1,4 @@
 import { Link } from "react-router";
-import { useQuery } from "@tanstack/react-query";
-import { getProductsByCollection } from "@/lib/queries/getProductsByCollection";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import HeroSection from "@/components/homepage/HeroSection";
@@ -8,6 +6,7 @@ import CategoryCard from "@/components/homepage/CategoryCard";
 import ProductCard from "@/components/ProductCard";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { useCategories } from "@/hooks/useCategories";
+import { useCollectionProductsQuery } from "@/hooks/useQueries";
 
 const heroSlides = [
   {
@@ -42,12 +41,9 @@ const heroSlides = [
 const HomePage = () => {
   const categories = useCategories();
 
-  // Fetch collection products
-  const { data: collectionData, isLoading: collectionLoading } = useQuery({
-    queryKey: ["collection-products", "best-sellers"],
-    queryFn: () => getProductsByCollection("best-sellers"),
-    staleTime: 1000 * 60 * 5,
-  });
+  // Fetch the "best-sellers" collection products, limited to 8 items.
+  const { data: collectionData, isLoading: collectionLoading } =
+    useCollectionProductsQuery("best-sellers", 8);
 
   const collectionTitle = collectionData?.collection?.title;
   const products = collectionData?.products || [];

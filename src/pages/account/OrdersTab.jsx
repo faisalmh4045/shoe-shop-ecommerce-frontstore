@@ -1,28 +1,18 @@
 import { Link } from "react-router";
 import { useSelector } from "react-redux";
-import { useQuery } from "@tanstack/react-query";
 import { Package, ShoppingBag, AlertCircle } from "lucide-react";
 import { selectUser } from "@/store/authSlice";
-import { getOrders } from "@/lib/queries/getOrders";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import StatusBadge from "@/components/order-details/StatusBadge";
+import { useOrdersQuery } from "@/hooks/useQueries";
 
 const OrdersTab = () => {
   const user = useSelector(selectUser);
   const userId = user?.id;
 
-  const {
-    data: orders = [],
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["order-details", userId],
-    queryFn: () => getOrders(userId),
-    enabled: !!userId,
-    staleTime: 0,
-  });
+  const { data: orders = [], isLoading, error } = useOrdersQuery(userId);
 
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString("en-US", {

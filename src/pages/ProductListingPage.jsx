@@ -1,7 +1,4 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getPlpFilters } from "@/lib/queries/getPlpFilters";
-import { getPLPProducts } from "@/lib/queries/getPlpProducts";
 import { Box, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -23,6 +20,7 @@ import FilterContent from "@/components/FilterContent";
 import ProductCard from "@/components/ProductCard";
 import Pagination from "@/components/Pagination";
 import { usePlpQueryParams } from "@/hooks/usePlpQueryParams";
+import { usePlpFiltersQuery, usePlpProductsQuery } from "@/hooks/useQueries";
 
 const ProductListingPage = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -35,33 +33,10 @@ const ProductListingPage = () => {
     resetFilters,
   } = usePlpQueryParams();
 
-  const serializedFilters = {};
-
-  Object.entries(activeFilters).forEach(([key, value]) => {
-    if (Array.isArray(value)) {
-      serializedFilters[key] = value.join(",");
-    } else if (value != null) {
-      serializedFilters[key] = String(value);
-    }
-  });
-
   // queries
-  const { data: filterData, isLoading: filtersLoading } = useQuery({
-    queryKey: ["plp-filters"],
-    queryFn: getPlpFilters,
-  });
-
-  const { data: productsData, isLoading: productsLoading } = useQuery({
-    queryKey: ["plp-products", categorySlug, page, sort, serializedFilters],
-    queryFn: () =>
-      getPLPProducts({
-        categorySlug,
-        page,
-        sort,
-        serializedFilters,
-      }),
-    enabled: !!categorySlug,
-  });
+  const { data: filterData, isLoading: filtersLoading } = usePlpFiltersQuery();
+  const { data: productsData, isLoading: productsLoading } =
+    usePlpProductsQuery(categorySlug, page, sort, activeFilters);
 
   // Extract products array and metadata from response
   const products = productsData?.products || [];

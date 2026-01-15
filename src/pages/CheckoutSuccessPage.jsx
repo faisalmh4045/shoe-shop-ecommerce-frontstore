@@ -1,6 +1,5 @@
-import { getOrderDetails } from "@/lib/queries/getOrderDetails";
-import { useQuery } from "@tanstack/react-query";
 import { Link, useParams, useSearchParams } from "react-router";
+import { useOrderDetailsQuery } from "@/hooks/useQueries";
 import { CheckCircle, Package, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import LoadingSpinner from "@/components/LoadingSpinner";
@@ -14,12 +13,7 @@ const CheckoutSuccessPage = () => {
     data: order,
     isLoading,
     error,
-  } = useQuery({
-    queryKey: ["order-details", orderNumber, email],
-    queryFn: () => getOrderDetails(orderNumber, email),
-    enabled: !!orderNumber && !!email,
-    staleTime: 0,
-  });
+  } = useOrderDetailsQuery(orderNumber, email);
 
   if (isLoading) {
     return <LoadingSpinner message="Loading order details" />;
