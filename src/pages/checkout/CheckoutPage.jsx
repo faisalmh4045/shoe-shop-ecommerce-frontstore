@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useCreateOrderMutation } from "@/hooks/useMutations";
+import { useStripePayment } from "@/hooks/useStripePayment";
 import { Link, useNavigate } from "react-router";
 import { selectCartItems, clearCart } from "@/store/cartSlice";
 import { selectUser, selectIsAuthenticated } from "@/store/authSlice";
 import { useCartProductsQuery } from "@/hooks/useQueries";
-import LoadingSpinner from "@/components/LoadingSpinner";
+import LoadingSpinner from "@/components/shared/LoadingSpinner";
 import { AccountSection } from "@/components/checkout/AccountSection";
 import { ShippingSection } from "@/components/checkout/ShippingSection";
 import { BillingSection } from "@/components/checkout/BillingSection";
@@ -12,8 +14,6 @@ import { PaymentMethodSection } from "@/components/checkout/PaymentMethodSection
 import { OrderSummary } from "@/components/checkout/OrderSummary";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ShoppingBag } from "lucide-react";
-import { useCreateOrderMutation } from "@/hooks/useMutations";
-import { useStripePayment } from "@/hooks/useStripePayment";
 
 const CheckoutPage = () => {
   const navigate = useNavigate();

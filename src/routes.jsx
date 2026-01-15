@@ -4,23 +4,23 @@ import {
   Navigate,
   Route,
 } from "react-router";
-import Layout from "./components/Layout";
+import Layout from "./components/layout/Layout";
 import HomePage from "./pages/HomePage";
-import GuestRoute from "./components/GuestRoute";
-import LoginPage from "./pages/LoginPage";
-import SignupPage from "./pages/SignupPage";
-import ForgotPasswordPage from "./pages/ForgotPasswordPage";
-import UpdatePasswordPage from "./pages/UpdatePasswordPage";
+import GuestRoute from "./components/layout/GuestRoute";
+import LoginPage from "./pages/auth/LoginPage";
+import SignupPage from "./pages/auth/SignupPage";
+import ForgotPasswordPage from "./pages/auth/ForgotPasswordPage";
+import UpdatePasswordPage from "./pages/auth/UpdatePasswordPage";
 import ProductListingPage from "./pages/ProductListingPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import CartPage from "./pages/CartPage";
-import CheckoutPage from "./pages/CheckoutPage";
-import CheckoutSuccessPage from "./pages/CheckoutSuccessPage";
-import CompletionPage from "./pages/CompletionPage";
+import CheckoutPage from "./pages/checkout/CheckoutPage";
+import CheckoutSuccessPage from "./pages/checkout/CheckoutSuccessPage";
+import CompletionPage from "./pages/checkout/CompletionPage";
 import TrackOrderPage from "./pages/TrackOrderPage";
 import OrderDetailsPage from "./pages/OrderDetailsPage";
-import PrivateRoute from "./components/PrivateRoute";
-import AccountPage from "./pages/AccountPage";
+import PrivateRoute from "./components/layout/PrivateRoute";
+import AccountPage from "./pages/account/AccountPage";
 import OrdersTab from "./pages/account/OrdersTab";
 import ProfileTab from "./pages/account/ProfileTab";
 import AccountOrderDetailsPage from "./pages/account/AccountOrderDetailsPage";

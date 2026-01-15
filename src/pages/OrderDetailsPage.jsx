@@ -1,7 +1,7 @@
 import { useParams, useSearchParams, Link } from "react-router";
 import { useOrderDetailsQuery } from "@/hooks/useQueries";
 import { Package, AlertCircle } from "lucide-react";
-import LoadingSpinner from "@/components/LoadingSpinner";
+import LoadingSpinner from "@/components/shared/LoadingSpinner";
 import OrderDetails from "@/components/order-details/OrderDetails";
 
 const OrderDetailsPage = () => {

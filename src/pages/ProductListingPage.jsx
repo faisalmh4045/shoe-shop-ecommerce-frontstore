@@ -15,10 +15,10 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import LoadingSpinner from "@/components/LoadingSpinner";
+import LoadingSpinner from "@/components/shared/LoadingSpinner";
 import FilterContent from "@/components/FilterContent";
-import ProductCard from "@/components/ProductCard";
-import Pagination from "@/components/Pagination";
+import ProductCard from "@/components/shared/ProductCard";
+import Pagination from "@/components/shared/Pagination";
 import { usePlpQueryParams } from "@/hooks/usePlpQueryParams";
 import { usePlpFiltersQuery, usePlpProductsQuery } from "@/hooks/useQueries";
 

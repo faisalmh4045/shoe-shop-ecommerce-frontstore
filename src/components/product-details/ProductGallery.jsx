@@ -1,4 +1,4 @@
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
 const ProductGallery = ({ images, selectedIndex, onSelect, productTitle }) => (
   <div className="space-y-4">

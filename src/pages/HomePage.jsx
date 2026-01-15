@@ -3,8 +3,8 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import HeroSection from "@/components/homepage/HeroSection";
 import CategoryCard from "@/components/homepage/CategoryCard";
-import ProductCard from "@/components/ProductCard";
-import LoadingSpinner from "@/components/LoadingSpinner";
+import ProductCard from "@/components/shared/ProductCard";
+import LoadingSpinner from "@/components/shared/LoadingSpinner";
 import { useCategories } from "@/hooks/useCategories";
 import { useCollectionProductsQuery } from "@/hooks/useQueries";
 

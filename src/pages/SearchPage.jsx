@@ -1,9 +1,9 @@
 import { useSearchParams, useNavigate, Link } from "react-router";
 import { Search as SearchIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Pagination from "@/components/Pagination";
-import LoadingSpinner from "@/components/LoadingSpinner";
-import ProductCard from "@/components/ProductCard";
+import Pagination from "@/components/shared/Pagination";
+import LoadingSpinner from "@/components/shared/LoadingSpinner";
+import ProductCard from "@/components/shared/ProductCard";
 import { useSearchProductsQuery } from "@/hooks/useQueries";
 
 const SearchPage = () => {

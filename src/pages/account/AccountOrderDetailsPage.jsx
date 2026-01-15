@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Package } from "lucide-react";
 import { selectUser } from "@/store/authSlice";
 import OrderDetails from "@/components/order-details/OrderDetails";
-import LoadingSpinner from "@/components/LoadingSpinner";
+import LoadingSpinner from "@/components/shared/LoadingSpinner";
 import { useOrderDetailsQuery } from "@/hooks/useQueries";
 
 const AccountOrderDetailsPage = () => {

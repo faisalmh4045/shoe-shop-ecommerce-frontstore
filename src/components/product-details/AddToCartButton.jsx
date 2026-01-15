@@ -1,5 +1,5 @@
 import { ShoppingCart } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
 const AddToCartButton = ({ disabled, onAdd }) => {
   return (

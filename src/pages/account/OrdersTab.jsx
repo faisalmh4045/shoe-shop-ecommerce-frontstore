@@ -4,7 +4,7 @@ import { Package, ShoppingBag, AlertCircle } from "lucide-react";
 import { selectUser } from "@/store/authSlice";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import LoadingSpinner from "@/components/LoadingSpinner";
+import LoadingSpinner from "@/components/shared/LoadingSpinner";
 import StatusBadge from "@/components/order-details/StatusBadge";
 import { useOrdersQuery } from "@/hooks/useQueries";
 

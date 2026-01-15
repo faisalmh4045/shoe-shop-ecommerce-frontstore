@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { Card, CardContent } from "./ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 
 const ProductCard = ({ product, categorySlug }) => {
   const { slug, image, title, price } = product;

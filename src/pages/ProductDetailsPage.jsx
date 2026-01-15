@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useParams, useSearchParams, useNavigate } from "react-router";
 import { useProductDetailsQuery } from "@/hooks/useQueries";
 import { Separator } from "@/components/ui/separator";
-import LoadingSpinner from "@/components/LoadingSpinner";
-import ProductGallery from "@/components/ProductDetailsPage/ProductGallery";
-import ProductHeader from "@/components/ProductDetailsPage/ProductHeader";
-import VariantSelectors from "@/components/ProductDetailsPage/VariantSelectors";
-import QuantitySelector from "@/components/ProductDetailsPage/QuantitySelector";
-import AddToCartButton from "@/components/ProductDetailsPage/AddToCartButton";
+import LoadingSpinner from "@/components/shared/LoadingSpinner";
+import ProductGallery from "@/components/product-details/ProductGallery";
+import ProductHeader from "@/components/product-details/ProductHeader";
+import VariantSelectors from "@/components/product-details/VariantSelectors";
+import QuantitySelector from "@/components/product-details/QuantitySelector";
+import AddToCartButton from "@/components/product-details/AddToCartButton";
 import { useDispatch } from "react-redux";
 import { addItem } from "@/store/cartSlice";
 

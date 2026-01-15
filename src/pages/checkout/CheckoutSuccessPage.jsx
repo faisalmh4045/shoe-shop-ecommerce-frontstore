@@ -2,7 +2,7 @@ import { Link, useParams, useSearchParams } from "react-router";
 import { useOrderDetailsQuery } from "@/hooks/useQueries";
 import { CheckCircle, Package, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import LoadingSpinner from "@/components/LoadingSpinner";
+import LoadingSpinner from "@/components/shared/LoadingSpinner";
 
 const CheckoutSuccessPage = () => {
   const { orderNumber } = useParams();

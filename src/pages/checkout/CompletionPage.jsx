@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { useDispatch } from "react-redux";
+import { useFinalizeStripePaymentMutation } from "@/hooks/useMutations";
 import { Elements, useStripe } from "@stripe/react-stripe-js";
 import { clearCart } from "@/store/cartSlice";
 import { stripePromise } from "@/lib/stripeConfig";
@@ -8,7 +9,6 @@ import { CheckCircle, Clock, X, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { Card, CardContent } from "@/components/ui/card";
-import { useFinalizeStripePaymentMutation } from "@/hooks/useMutations";
 
 const CompletionPage = () => {
   return (

@@ -1,6 +1,6 @@
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Minus, Plus } from "lucide-react";
-import { Input } from "../ui/input";
 
 const QuantitySelector = ({ quantity, onChange }) => (
   <div>
