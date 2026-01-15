@@ -1,6 +1,5 @@
 import { Link } from "react-router";
 import { useQuery } from "@tanstack/react-query";
-import { getCategories } from "@/lib/queries/getCategories";
 import { getProductsByCollection } from "@/lib/queries/getProductsByCollection";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,6 +7,7 @@ import HeroSection from "@/components/homepage/HeroSection";
 import CategoryCard from "@/components/homepage/CategoryCard";
 import ProductCard from "@/components/ProductCard";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import { useCategories } from "@/hooks/useCategories";
 
 const heroSlides = [
   {
@@ -40,11 +40,7 @@ const heroSlides = [
 ];
 
 const HomePage = () => {
-  // Fetch categories
-  const { data: categories, isLoading: categoriesLoading } = useQuery({
-    queryKey: ["categories"],
-    queryFn: getCategories,
-  });
+  const categories = useCategories();
 
   // Fetch collection products
   const { data: collectionData, isLoading: collectionLoading } = useQuery({
@@ -61,22 +57,16 @@ const HomePage = () => {
       <HeroSection slides={heroSlides} />
 
       {/* Categories Section */}
-      {categoriesLoading ? (
-        <div className="py-12">
-          <LoadingSpinner message="Loading categories" />
+      <section className="mx-auto max-w-7xl px-4 py-16">
+        <h2 className="mb-8 text-center text-2xl font-bold text-foreground md:mb-10 md:text-3xl">
+          Shop by Category
+        </h2>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {categories?.map((category) => (
+            <CategoryCard key={category.id} category={category} />
+          ))}
         </div>
-      ) : (
-        <section className="mx-auto max-w-7xl px-4 py-16">
-          <h2 className="mb-8 text-center text-2xl font-bold text-foreground md:mb-10 md:text-3xl">
-            Shop by Category
-          </h2>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {categories?.map((category) => (
-              <CategoryCard key={category.id} category={category} />
-            ))}
-          </div>
-        </section>
-      )}
+      </section>
 
       {/* Featured Products */}
       {collectionLoading ? (

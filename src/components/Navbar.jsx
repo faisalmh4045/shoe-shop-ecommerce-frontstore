@@ -2,8 +2,6 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsAuthenticated, signOut } from "@/store/authSlice";
-import { useQuery } from "@tanstack/react-query";
-import { getCategories } from "@/lib/queries/getCategories";
 import { selectCartItemCount } from "@/store/cartSlice";
 import { Menu, Search, ShoppingBag, User, X } from "lucide-react";
 import {
@@ -20,11 +18,10 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import LoadingSpinner from "@/components/LoadingSpinner";
-import { Spinner } from "@/components/ui/spinner";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useCategories } from "@/hooks/useCategories";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -37,13 +34,8 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
 
-  // fetch categories
-  const { data: categories = [], isLoading: categoriesLoading } = useQuery({
-    queryKey: ["navbar-categories"],
-    queryFn: getCategories,
-  });
-
-  const navCategories = categories.filter((cat) => cat.include_in_nav);
+  const allCategories = useCategories();
+  const navCategories = allCategories.filter((cat) => cat.include_in_nav);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -84,20 +76,16 @@ const Navbar = () => {
                   <SheetTitle className="text-left">Menu</SheetTitle>
                 </SheetHeader>
                 <nav className="mt-6 space-y-1 p-4">
-                  {categoriesLoading ? (
-                    <LoadingSpinner message="Loading categories" />
-                  ) : (
-                    navCategories.map((category) => (
-                      <Link
-                        key={category.id}
-                        to={`/category/${category.slug}`}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="block rounded-lg px-3 py-2 text-foreground"
-                      >
-                        {category.title}
-                      </Link>
-                    ))
-                  )}
+                  {navCategories.map((category) => (
+                    <Link
+                      key={category.id}
+                      to={`/category/${category.slug}`}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="block rounded-lg px-3 py-2 text-foreground"
+                    >
+                      {category.title}
+                    </Link>
+                  ))}
                 </nav>
               </SheetContent>
             </Sheet>
@@ -113,21 +101,15 @@ const Navbar = () => {
 
           {/* Center - Desktop Navigation */}
           <nav className="hidden items-center gap-1 lg:flex">
-            {categoriesLoading ? (
-              <span className="flex items-center gap-1 text-sm text-muted-foreground">
-                <Spinner /> Loading categories...
-              </span>
-            ) : (
-              navCategories.map((category) => (
-                <Link
-                  key={category.id}
-                  to={`/category/${category.slug}`}
-                  className="px-3 py-2 text-sm font-medium text-foreground"
-                >
-                  {category.title}
-                </Link>
-              ))
-            )}
+            {navCategories.map((category) => (
+              <Link
+                key={category.id}
+                to={`/category/${category.slug}`}
+                className="px-3 py-2 text-sm font-medium text-foreground"
+              >
+                {category.title}
+              </Link>
+            ))}
           </nav>
 
           {/* Right - Actions */}

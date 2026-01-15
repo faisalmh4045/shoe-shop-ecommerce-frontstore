@@ -25,10 +25,21 @@ import OrdersTab from "./pages/account/OrdersTab";
 import ProfileTab from "./pages/account/ProfileTab";
 import AccountOrderDetailsPage from "./pages/account/AccountOrderDetailsPage";
 import SearchPage from "./pages/SearchPage";
+import { queryClient } from "./lib/queryClient";
+import { getCategories } from "./lib/queries/getCategories";
+
+const rootLoader = async () => {
+  const categories = await queryClient.ensureQueryData({
+    queryKey: ["categories"],
+    queryFn: getCategories,
+  });
+
+  return { categories };
+};
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
+    <Route id="root" path="/" element={<Layout />} loader={rootLoader}>
       <Route index element={<HomePage />} />
       <Route path="category/:category" element={<ProductListingPage />} />
       <Route
