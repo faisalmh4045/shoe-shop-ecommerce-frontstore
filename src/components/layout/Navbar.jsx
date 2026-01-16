@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsAuthenticated, signOut } from "@/store/authSlice";
-import { selectCartItemCount } from "@/store/cartSlice";
+import { openCart, selectCartItemCount } from "@/store/cartSlice";
 import { Menu, Search, ShoppingBag, User, X } from "lucide-react";
 import {
   DropdownMenu,
@@ -128,7 +128,7 @@ const Navbar = () => {
               variant="ghost"
               size="icon"
               className="relative"
-              onClick={() => navigate("/cart")}
+              onClick={() => dispatch(openCart())}
             >
               <ShoppingBag size={20} />
               {cartItemCount > 0 && (

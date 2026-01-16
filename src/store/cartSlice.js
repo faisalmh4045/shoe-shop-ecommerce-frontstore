@@ -78,15 +78,35 @@ const cartSlice = createSlice({
       state.items = [];
       saveCartToStorage([]);
     },
+
+    toggleCart: (state) => {
+      state.isOffcanvasOpen = !state.isOffcanvasOpen;
+    },
+
+    openCart: (state) => {
+      state.isOffcanvasOpen = true;
+    },
+
+    closeCart: (state) => {
+      state.isOffcanvasOpen = false;
+    },
   },
 });
 
-export const { addItem, removeItem, updateQuantity, clearCart } =
-  cartSlice.actions;
+export const {
+  addItem,
+  removeItem,
+  updateQuantity,
+  clearCart,
+  toggleCart,
+  openCart,
+  closeCart,
+} = cartSlice.actions;
 
 // Selectors
 export const selectCartItems = (state) => state.cart.items;
 export const selectCartItemCount = (state) =>
   state.cart.items.reduce((count, item) => count + item.quantity, 0);
+export const selectIsOffcanvasOpen = (state) => state.cart.isOffcanvasOpen;
 
 export default cartSlice.reducer;

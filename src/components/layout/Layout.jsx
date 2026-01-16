@@ -1,5 +1,6 @@
 import { Outlet } from "react-router";
 import Navbar from "./Navbar";
+import OffCanvasCart from "./OffCanvasCart";
 import { useSelector } from "react-redux";
 import { selectAuthLoading } from "@/store/authSlice";
 
@@ -16,6 +17,7 @@ const Layout = () => {
       <main className="flex-1">
         <Outlet />
       </main>
+      <OffCanvasCart />
     </div>
   );
 };
