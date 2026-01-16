@@ -1,6 +1,6 @@
 import { supabase } from "../supabase/client";
 
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = 8;
 
 export const searchProducts = async (searchQuery, page = 1) => {
   const from = (page - 1) * ITEMS_PER_PAGE;

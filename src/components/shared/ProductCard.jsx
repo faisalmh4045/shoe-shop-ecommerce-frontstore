@@ -10,22 +10,22 @@ const ProductCard = ({ product, categorySlug }) => {
 
   return (
     <Link to={href}>
-      <Card className="overflow-hidden border-0 p-0">
+      <Card className="h-full overflow-hidden rounded-md border-0 p-0 md:rounded-lg">
         <CardContent className="p-0">
-          <div className="aspect-video lg:aspect-square">
+          <div className="aspect-square">
             <img
               src={image || "/placeholder.webp"}
               alt={title}
               className="h-full w-full object-cover"
             />
           </div>
-          <div className="p-4">
-            <h3 className="line-clamp-2 font-medium text-foreground">
-              {title}
-            </h3>
-            <p className="mt-1 text-lg font-semibold text-foreground">
+          <div className="p-2 sm:p-4">
+            <p className="text-sm font-semibold text-foreground sm:text-lg">
               ${price.toFixed(2)}
             </p>
+            <h3 className="mt-1 line-clamp-2 text-sm font-medium text-foreground sm:text-base">
+              {title}
+            </h3>
           </div>
         </CardContent>
       </Card>

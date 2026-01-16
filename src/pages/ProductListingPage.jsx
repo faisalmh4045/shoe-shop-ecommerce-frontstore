@@ -41,6 +41,7 @@ const ProductListingPage = () => {
   // Extract products array and metadata from response
   const products = productsData?.products || [];
   const totalProducts = productsData?.total || 0;
+  const pageSize = productsData?.page_size || 0;
 
   // Handle sort change
   const handleSortChange = (newSort) => {
@@ -150,7 +151,7 @@ const ProductListingPage = () => {
               {products.length > 0 ? (
                 <>
                   {/* Product Cards */}
-                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                  <div className="grid grid-cols-2 gap-3 sm:gap-6 md:grid-cols-3">
                     {products.map((product) => (
                       <ProductCard
                         key={product.product_id}
@@ -164,6 +165,7 @@ const ProductListingPage = () => {
                   <Pagination
                     currentPage={page}
                     totalItems={totalProducts}
+                    itemsPerPage={pageSize}
                     onPageChange={goToPage}
                   />
                 </>
