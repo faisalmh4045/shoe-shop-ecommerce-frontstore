@@ -1,5 +1,6 @@
 import { Outlet } from "react-router";
 import Navbar from "./Navbar";
+import Breadcrumbs from "./Breadcrumbs";
 import OffCanvasCart from "./OffCanvasCart";
 import { useSelector } from "react-redux";
 import { selectAuthLoading } from "@/store/authSlice";
@@ -15,6 +16,7 @@ const Layout = () => {
     <div className="flex min-h-screen flex-col">
       <Navbar />
       <main className="flex-1">
+        <Breadcrumbs />
         <Outlet />
       </main>
       <OffCanvasCart />
