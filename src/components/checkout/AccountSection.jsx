@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { UserRoundCheck } from "lucide-react";
+import { toast } from "sonner";
 
 export const AccountSection = ({
   user,
@@ -27,8 +28,9 @@ export const AccountSection = ({
 
     try {
       await dispatch(signIn(loginEmail, loginPassword));
-    } catch (err) {
-      setLoginError(err.message || "Login failed");
+      toast.success("Login successful");
+    } catch {
+      toast.error("Login failed");
     } finally {
       setIsLoggingIn(false);
     }
@@ -38,8 +40,9 @@ export const AccountSection = ({
     setSigningOut(true);
     try {
       await dispatch(signOut());
-    } catch (err) {
-      console.error("Sign out failed", err);
+      toast.success("Sign out successful");
+    } catch {
+      toast.error("Sign out failed");
     } finally {
       setSigningOut(false);
     }

@@ -11,6 +11,7 @@ import AddToCartButton from "@/components/product-details/AddToCartButton";
 import { useDispatch } from "react-redux";
 import { addItem } from "@/store/cartSlice";
 import { Box } from "lucide-react";
+import { toast } from "sonner";
 
 const ProductDetailsPage = () => {
   const { productSlug } = useParams();
@@ -114,7 +115,9 @@ const ProductDetailsPage = () => {
           : attributes || [],
       }),
     );
-    alert(`Added ${quantity} x ${product.title} to cart!`);
+    toast("Added to cart", {
+      description: `${quantity} x ${product.title}`,
+    });
   };
 
   const hasSelectedAllOptions =

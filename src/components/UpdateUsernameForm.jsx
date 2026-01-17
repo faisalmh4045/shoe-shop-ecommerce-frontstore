@@ -4,6 +4,7 @@ import { selectUser, updateName } from "@/store/authSlice";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
 
 const UpdateUsernameForm = () => {
   const user = useSelector(selectUser);
@@ -19,16 +20,16 @@ const UpdateUsernameForm = () => {
     setError(null);
 
     if (!username.trim()) {
-      setError("Name is required");
+      setError("Full name is required");
       return;
     }
 
     setIsLoading(true);
     try {
       await dispatch(updateName(username));
-      alert("Name updated successfully");
-    } catch (err) {
-      setError(err?.message || "An error occurred");
+      toast.success("Name updated successfully");
+    } catch {
+      toast.error("Failed to update name. Please try again");
     } finally {
       setIsLoading(false);
     }

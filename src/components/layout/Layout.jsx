@@ -4,6 +4,7 @@ import Breadcrumbs from "./Breadcrumbs";
 import OffCanvasCart from "./OffCanvasCart";
 import { useSelector } from "react-redux";
 import { selectAuthLoading } from "@/store/authSlice";
+import { Toaster } from "@/components/ui/sonner";
 
 const Layout = () => {
   const loading = useSelector(selectAuthLoading);
@@ -20,6 +21,7 @@ const Layout = () => {
         <Outlet />
       </main>
       <OffCanvasCart />
+      <Toaster theme="light" richColors dismissable />
     </div>
   );
 };

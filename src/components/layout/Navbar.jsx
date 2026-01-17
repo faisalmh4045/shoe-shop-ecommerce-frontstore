@@ -22,6 +22,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useCategories } from "@/hooks/useCategories";
+import { toast } from "sonner";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -51,8 +52,8 @@ const Navbar = () => {
     try {
       await dispatch(signOut());
       navigate("/", { replace: true });
-    } catch (err) {
-      console.error("Sign out failed", err);
+    } catch {
+      toast.error("Sign out failed");
     } finally {
       setSigningOut(false);
     }

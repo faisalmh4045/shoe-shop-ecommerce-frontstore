@@ -8,6 +8,7 @@ import {
 } from "@/store/cartSlice";
 import { Minus, Plus, Trash2, ShoppingBag, ArrowRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 const CartPage = () => {
   const dispatch = useDispatch();
@@ -39,9 +40,17 @@ const CartPage = () => {
   };
 
   const handleClearCart = () => {
-    if (window.confirm("Are you sure you want to clear your cart?")) {
-      dispatch(clearCart());
-    }
+    toast("Clear cart?", {
+      description: "This will remove all items from your cart.",
+      action: {
+        label: "Clear",
+        onClick: () => dispatch(clearCart()),
+      },
+      cancel: {
+        label: "Cancel",
+      },
+      position: "top-center",
+    });
   };
 
   if (cartItems.length === 0) {

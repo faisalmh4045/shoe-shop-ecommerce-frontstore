@@ -4,6 +4,7 @@ import { updatePassword } from "@/store/authSlice";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
 
 const UpdatePasswordForm = ({ onSuccess }) => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const UpdatePasswordForm = ({ onSuccess }) => {
     setError(null);
 
     if (newPassword !== confirmPassword) {
-      setError("New passwords do not match");
+      setError("Passwords do not match");
       return;
     }
 
@@ -33,8 +34,8 @@ const UpdatePasswordForm = ({ onSuccess }) => {
       setNewPassword("");
       setConfirmPassword("");
       onSuccess?.();
-    } catch (err) {
-      setError(err?.message || "An error occurred");
+    } catch {
+      toast.error("Failed to update password.");
     } finally {
       setIsLoading(false);
     }

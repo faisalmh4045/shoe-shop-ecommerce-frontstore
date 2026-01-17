@@ -7,12 +7,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import UpdatePasswordForm from "@/components/UpdatePasswordForm";
+import { toast } from "sonner";
 
 const UpdatePasswordPage = () => {
   const navigate = useNavigate();
 
   const handleSuccess = () => {
-    alert("Password updated successfully");
+    toast.success("Password updated successfully");
     navigate("/account/profile");
   };
 

@@ -10,12 +10,13 @@ import {
 } from "@/components/ui/card";
 import UpdateUsernameForm from "@/components/UpdateUsernameForm";
 import UpdatePasswordForm from "@/components/UpdatePasswordForm";
+import { toast } from "sonner";
 
 const ProfileTab = () => {
   const user = useSelector(selectUser);
 
   const handlePasswordSuccess = () => {
-    alert("Password updated successfully");
+    toast.success("Password updated successfully");
   };
 
   return (

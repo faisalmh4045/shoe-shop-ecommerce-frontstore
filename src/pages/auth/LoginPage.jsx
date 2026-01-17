@@ -13,6 +13,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router";
 import { useDispatch } from "react-redux";
 import { signIn } from "@/store/authSlice";
+import { toast } from "sonner";
 
 const LoginForm = ({ className, ...props }) => {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ const LoginForm = ({ className, ...props }) => {
 
     try {
       await dispatch(signIn(email, password));
+      toast.success("Welcome back");
       navigate("/", { replace: true });
     } catch (error) {
       setError(error instanceof Error ? error.message : "An error occurred");

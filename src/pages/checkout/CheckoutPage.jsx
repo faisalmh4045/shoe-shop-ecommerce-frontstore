@@ -14,6 +14,7 @@ import { PaymentMethodSection } from "@/components/checkout/PaymentMethodSection
 import { OrderSummary } from "@/components/checkout/OrderSummary";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ShoppingBag } from "lucide-react";
+import { toast } from "sonner";
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
@@ -120,9 +121,8 @@ const CheckoutPage = () => {
         ...orderData,
         paymentMethod: "STRIPE",
       });
-    } catch (err) {
-      console.error(err);
-      alert("Failed to set up Stripe payment.");
+    } catch {
+      toast.error("Failed to set up card payment.");
       setPaymentMethod("COD");
     }
   };
@@ -147,7 +147,7 @@ const CheckoutPage = () => {
           );
         },
         onError: () => {
-          alert("Failed to place order");
+          toast.error("Failed to place order");
         },
       },
     );
