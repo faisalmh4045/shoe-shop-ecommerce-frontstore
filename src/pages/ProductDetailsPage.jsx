@@ -10,6 +10,7 @@ import QuantitySelector from "@/components/product-details/QuantitySelector";
 import AddToCartButton from "@/components/product-details/AddToCartButton";
 import { useDispatch } from "react-redux";
 import { addItem } from "@/store/cartSlice";
+import { Box } from "lucide-react";
 
 const ProductDetailsPage = () => {
   const { productSlug } = useParams();
@@ -26,9 +27,12 @@ const ProductDetailsPage = () => {
   if (error) {
     return (
       <div className="mx-auto max-w-7xl px-4 py-16 text-center">
-        <h1 className="mb-4 text-2xl font-bold text-foreground">
+        <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-full bg-gray-100">
+          <Box size={48} />
+        </div>
+        <h2 className="mb-2 text-2xl font-bold text-foreground">
           Product Not Found
-        </h1>
+        </h2>
         <p className="text-muted-foreground">
           The product you're looking for doesn't exist.
         </p>
@@ -119,7 +123,7 @@ const ProductDetailsPage = () => {
       Object.keys(selectableAttributes).length;
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl px-4 py-6">
       <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
         <ProductGallery
           images={currentImages}

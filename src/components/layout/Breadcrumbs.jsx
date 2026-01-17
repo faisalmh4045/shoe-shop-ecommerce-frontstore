@@ -20,7 +20,7 @@ const Breadcrumbs = () => {
   }
 
   return (
-    <div className="mt-6">
+    <div className="mt-3">
       <div className="mx-auto max-w-7xl px-4 py-3">
         <Breadcrumb>
           <BreadcrumbList>

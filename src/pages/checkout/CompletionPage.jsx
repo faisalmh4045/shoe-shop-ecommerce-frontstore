@@ -93,9 +93,9 @@ const CompletionPageContent = () => {
   }, [stripe, finalizePaymentMutation, clientSecret, dispatch, navigate]);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-20">
-      <div className="mx-auto max-w-md">
-        <Card className="p-8 text-center">
+    <div className="mx-auto max-w-7xl px-4 py-16">
+      <div className="mx-auto max-w-lg">
+        <Card className="text-center">
           <CardContent>
             {status === "loading" && (
               <>
@@ -120,7 +120,7 @@ const CompletionPageContent = () => {
                 <p className="mb-4 text-muted-foreground">
                   Your order has been confirmed. Redirecting to order details...
                 </p>
-                <Spinner className="inline-block size-6 text-green-500" />
+                <Spinner className="inline-block size-6 text-green-600" />
               </>
             )}
 
@@ -148,7 +148,9 @@ const CompletionPageContent = () => {
                   Payment Failed
                 </h2>
                 <p className="mb-6 text-muted-foreground">{error}</p>
-                <Button onClick={() => navigate("/checkout")}>Try Again</Button>
+                <Button size="sm" onClick={() => navigate("/checkout")}>
+                  Try Again
+                </Button>
               </>
             )}
 
@@ -160,10 +162,14 @@ const CompletionPageContent = () => {
                 <h2 className="mb-2 text-2xl font-bold text-red-600">Error</h2>
                 <p className="mb-6 text-muted-foreground">{error}</p>
                 <div className="flex justify-center gap-3">
-                  <Button onClick={() => navigate("/checkout")}>
+                  <Button size="sm" onClick={() => navigate("/checkout")}>
                     Back to Checkout
                   </Button>
-                  <Button variant="outline" onClick={() => navigate("/")}>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => navigate("/")}
+                  >
                     Go Home
                   </Button>
                 </div>

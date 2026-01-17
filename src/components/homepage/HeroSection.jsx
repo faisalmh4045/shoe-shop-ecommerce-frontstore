@@ -17,7 +17,7 @@ const HeroSection = ({ slides }) => {
           loop: true,
           align: "start",
         }}
-        className="mx-auto w-full max-w-7xl overflow-hidden lg:mt-5 lg:rounded-lg"
+        className="mx-auto w-full max-w-7xl overflow-hidden xl:mt-5 xl:rounded-lg"
       >
         <CarouselContent>
           {slides.map((slide) => (

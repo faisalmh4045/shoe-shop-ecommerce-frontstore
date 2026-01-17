@@ -21,14 +21,12 @@ const AccountOrderDetailsPage = () => {
   if (error || !order) {
     return (
       <div className="mx-auto max-w-md py-12 text-center">
-        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-muted">
-          <Package className="h-10 w-10 text-muted-foreground" />
+        <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
+          <Package size={32} />
         </div>
 
-        <h2 className="mb-2 text-xl font-semibold text-foreground">
-          Order Not Found
-        </h2>
-        <p className="mb-4 text-muted-foreground">
+        <h3 className="mb-2 font-medium text-foreground">Order Not Found</h3>
+        <p className="mb-4 text-sm text-muted-foreground">
           We couldn't find an order with the provided details.
         </p>
         <Link to="/account/orders" className="text-primary hover:underline">

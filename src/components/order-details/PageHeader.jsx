@@ -28,7 +28,7 @@ const PageHeader = ({ order, email }) => {
 
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold">Order #{order.orderNumber}</h1>
+          <h1 className="text-xl font-bold">Order #{order.orderNumber}</h1>
           <p className="text-muted-foreground">Placed on {formattedDate}</p>
           {!isAccountView && email && (
             <p className="text-muted-foreground">Tracked email: {email}</p>

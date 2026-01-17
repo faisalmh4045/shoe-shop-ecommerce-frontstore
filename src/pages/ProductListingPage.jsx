@@ -67,7 +67,7 @@ const ProductListingPage = () => {
   ];
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl px-4 py-6">
       <div className="flex flex-col gap-8 lg:flex-row">
         {/* Filters Sidebar - Desktop */}
         <aside className="hidden w-64 shrink-0 lg:block">
@@ -170,14 +170,14 @@ const ProductListingPage = () => {
                   />
                 </>
               ) : (
-                <div className="py-20 text-center">
+                <div className="py-16 text-center">
                   <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-full bg-gray-100">
                     <Box size={48} />
                   </div>
-                  <h2 className="mb-2 text-2xl font-bold text-gray-800">
+                  <h2 className="mb-2 text-2xl font-bold text-foreground">
                     No products found
                   </h2>
-                  <p className="mb-6 text-gray-500">
+                  <p className="mb-4 text-muted-foreground">
                     Try adjusting your filters to find what you're looking for.
                   </p>
                   {hasActiveFilters && (

@@ -35,12 +35,12 @@ const SearchPage = () => {
     return (
       <div className="mx-auto max-w-7xl px-4 py-16">
         <div className="mx-auto max-w-md text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-muted">
-            <SearchIcon className="h-10 w-10 text-muted-foreground" />
+          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-full bg-gray-100">
+            <SearchIcon size={48} />
           </div>
-          <h1 className="mb-3 text-2xl font-bold text-foreground">
+          <h2 className="mb-2 text-2xl font-bold text-foreground">
             Search Products
-          </h1>
+          </h2>
           <p className="text-muted-foreground">
             Use the search bar above to find products.
           </p>
@@ -63,16 +63,16 @@ const SearchPage = () => {
     return (
       <div className="mx-auto max-w-7xl px-4 py-16">
         <div className="mx-auto max-w-md text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-muted">
-            <SearchIcon className="h-10 w-10 text-muted-foreground" />
+          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-full bg-gray-100">
+            <SearchIcon size={48} />
           </div>
-          <h2 className="mb-3 text-2xl font-bold text-foreground">
+          <h2 className="mb-2 text-2xl font-bold text-foreground">
             No Results Found
           </h2>
           <p className="mb-6 text-muted-foreground">
             No products found for "{query}". Try a different search term.
           </p>
-          <Button asChild>
+          <Button asChild size="sm">
             <Link to="/">Browse All Products</Link>
           </Button>
         </div>
@@ -82,7 +82,7 @@ const SearchPage = () => {
 
   // Results found
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8">
+    <div className="mx-auto max-w-7xl px-4 py-6">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-foreground md:text-3xl">

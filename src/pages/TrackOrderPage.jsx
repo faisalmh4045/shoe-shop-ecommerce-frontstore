@@ -26,7 +26,7 @@ const TrackOrderPage = () => {
   };
 
   return (
-    <div className="mx-auto max-w-md px-4 py-12">
+    <div className="mx-auto max-w-md px-4 py-6">
       <Card>
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Track Your Order</CardTitle>

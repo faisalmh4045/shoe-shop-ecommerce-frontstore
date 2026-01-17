@@ -53,7 +53,7 @@ const HomePage = () => {
       <HeroSection slides={heroSlides} />
 
       {/* Categories Section */}
-      <section className="mx-auto max-w-7xl px-4 py-16">
+      <section className="mx-auto max-w-7xl px-4 py-12 md:py-16">
         <h2 className="mb-8 text-center text-2xl font-bold text-foreground md:mb-10 md:text-3xl">
           Shop by Category
         </h2>
@@ -70,7 +70,7 @@ const HomePage = () => {
           <LoadingSpinner message="Loading products" />
         </div>
       ) : (
-        <section className="mx-auto max-w-7xl border-t border-border px-4 py-16">
+        <section className="mx-auto max-w-7xl border-t border-border px-4 py-12 md:py-16">
           <div className="mb-8 flex items-center justify-between md:mb-10">
             <h2 className="text-2xl font-bold text-foreground md:text-3xl">
               {collectionTitle || "Featured Products"}

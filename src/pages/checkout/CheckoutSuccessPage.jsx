@@ -22,9 +22,20 @@ const CheckoutSuccessPage = () => {
   if (error || !order) {
     return (
       <div className="mx-auto max-w-7xl px-4 py-16 text-center">
-        <h1 className="mb-4 text-2xl font-bold">Order not found</h1>
-        <Button asChild>
-          <Link to="/">Continue Shopping</Link>
+        <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
+          <Package size={32} />
+        </div>
+        <h2 className="mb-2 text-2xl font-bold text-foreground">
+          Order Not Found
+        </h2>
+        <p className="mb-4 text-muted-foreground">
+          We couldn't find an order with the provided details.
+        </p>
+        <Button asChild size="sm" className="gap-2">
+          <Link to="/">
+            Continue Shopping
+            <ArrowRight size={18} />
+          </Link>
         </Button>
       </div>
     );

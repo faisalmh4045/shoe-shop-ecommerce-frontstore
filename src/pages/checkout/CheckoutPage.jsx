@@ -161,17 +161,16 @@ const CheckoutPage = () => {
     return (
       <div className="mx-auto max-w-7xl px-4 py-16">
         <div className="mx-auto max-w-md text-center">
-          <ShoppingBag
-            size={64}
-            className="mx-auto mb-6 text-muted-foreground"
-          />
-          <h1 className="mb-3 text-2xl font-bold text-foreground">
+          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-full bg-gray-100">
+            <ShoppingBag size={48} />
+          </div>
+          <h2 className="mb-2 text-2xl font-bold text-foreground">
             Your cart is empty
-          </h1>
-          <p className="mb-8 text-muted-foreground">
+          </h2>
+          <p className="mb-4 text-muted-foreground">
             Looks like you haven't added any items to your cart yet.
           </p>
-          <Button asChild size="lg" className="gap-2">
+          <Button asChild size="sm" className="gap-2">
             <Link to="/">
               Continue Shopping
               <ArrowRight size={18} />
@@ -183,7 +182,7 @@ const CheckoutPage = () => {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl px-4 py-6">
       <h1 className="mb-8 text-2xl font-bold text-foreground md:text-3xl">
         Checkout
       </h1>

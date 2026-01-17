@@ -56,13 +56,15 @@ const OrdersTab = () => {
       {orders.length === 0 ? (
         <Card>
           <CardContent className="py-12 text-center">
-            <ShoppingBag className="mx-auto mb-4 h-12 w-12 text-muted-foreground/50" />
+            <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
+              <ShoppingBag size={32} />
+            </div>
             <h3 className="mb-2 font-medium text-foreground">No orders yet</h3>
             <p className="mb-4 text-sm text-muted-foreground">
               You haven't placed any orders. Start shopping to see your orders
               here.
             </p>
-            <Button asChild>
+            <Button asChild size="sm">
               <Link to="/">Start Shopping</Link>
             </Button>
           </CardContent>

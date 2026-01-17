@@ -52,7 +52,9 @@ const OffCanvasCart = () => {
 
         {items.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center py-12 text-center">
-            <ShoppingBag size={48} className="mb-4 text-muted-foreground" />
+            <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-full bg-gray-100">
+              <ShoppingBag size={48} />
+            </div>
             <h3 className="mb-2 font-medium text-foreground">
               Your cart is empty
             </h3>

@@ -48,17 +48,16 @@ const CartPage = () => {
     return (
       <div className="mx-auto max-w-7xl px-4 py-16">
         <div className="mx-auto max-w-md text-center">
-          <ShoppingBag
-            size={64}
-            className="mx-auto mb-6 text-muted-foreground"
-          />
-          <h1 className="mb-3 text-2xl font-bold text-foreground">
+          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-full bg-gray-100">
+            <ShoppingBag size={48} />
+          </div>
+          <h2 className="mb-2 text-2xl font-bold text-foreground">
             Your cart is empty
-          </h1>
-          <p className="mb-8 text-muted-foreground">
+          </h2>
+          <p className="mb-4 text-muted-foreground">
             Looks like you haven't added any items to your cart yet.
           </p>
-          <Button asChild size="lg" className="gap-2">
+          <Button asChild size="sm" className="gap-2">
             <Link to="/">
               Continue Shopping
               <ArrowRight size={18} />
@@ -70,11 +69,11 @@ const CartPage = () => {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl px-4 py-6">
       {/* Header */}
       <div className="mb-8 flex items-center justify-between">
         <h1 className="text-2xl font-bold text-foreground md:text-3xl">
-          Shopping Cart
+          Cart ({cartItems.length})
         </h1>
         <Button
           variant="outline"
@@ -82,7 +81,7 @@ const CartPage = () => {
           onClick={handleClearCart}
           className="text-destructive hover:text-destructive"
         >
-          <Trash2 size={16} className="mr-2" />
+          <Trash2 size={16} className="mr-1" />
           Clear Cart
         </Button>
       </div>
@@ -96,13 +95,23 @@ const CartPage = () => {
             return (
               <div
                 key={`${item.productId}-${item.variantId}`}
-                className="flex gap-4 rounded-lg border border-border bg-card p-4"
+                className="flex flex-col gap-4 rounded-lg border border-border bg-card p-4 sm:flex-row"
               >
-                <img
-                  src={item.image || "/placeholder.webp"}
-                  alt={item.title}
-                  className="h-24 w-24 shrink-0 rounded-md bg-muted object-cover md:h-32 md:w-32"
-                />
+                <div className="flex justify-between">
+                  <img
+                    src={item.image || "/placeholder.webp"}
+                    alt={item.title}
+                    className="h-24 w-24 shrink-0 rounded-md bg-muted object-cover md:h-32 md:w-32"
+                  />
+                  <Button
+                    variant="ghost"
+                    className="inline-flex sm:hidden"
+                    size="icon"
+                    onClick={() => handleRemove(item.productId, item.variantId)}
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
 
                 <div className="min-w-0 flex-1">
                   <div className="flex justify-between gap-4">
@@ -122,6 +131,7 @@ const CartPage = () => {
                     <Button
                       variant="ghost"
                       size="icon"
+                      className="hidden sm:inline-flex"
                       onClick={() =>
                         handleRemove(item.productId, item.variantId)
                       }

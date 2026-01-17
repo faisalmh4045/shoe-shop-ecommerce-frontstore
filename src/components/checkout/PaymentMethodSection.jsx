@@ -9,7 +9,7 @@ export const PaymentMethodSection = ({
   onChange,
   stripePayment,
 }) => (
-  <div className="rounded-lg border border-border bg-card p-6">
+  <div className="rounded-lg border border-border bg-card p-4 sm:p-6">
     <h2 className="mb-4 text-lg font-semibold text-foreground">
       Payment Method
     </h2>
@@ -54,7 +54,7 @@ export const PaymentMethodSection = ({
             </Label>
           </div>
           {paymentMethod === "STRIPE" && (
-            <div className="border-t border-border px-4 pt-2 pb-4">
+            <div className="border-t border-border px-1 pt-2 pb-4 sm:px-4">
               {stripePayment.isLoading ? (
                 <div className="py-6 text-center">
                   <div className="mx-auto inline-block h-6 w-6 animate-spin rounded-full border-2 border-blue-200 border-t-blue-600"></div>

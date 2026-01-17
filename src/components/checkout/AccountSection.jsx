@@ -46,19 +46,19 @@ export const AccountSection = ({
   };
 
   return (
-    <div className="rounded-lg border border-border bg-card p-6">
+    <div className="rounded-lg border border-border bg-card p-4 sm:p-6">
       <h2 className="mb-4 text-lg font-semibold text-foreground">
         Contact Information
       </h2>
 
       {isAuthenticated ? (
-        <div className="flex items-center justify-between gap-4 rounded-lg border border-border bg-card p-4">
+        <div className="flex flex-col justify-between gap-4 sm:flex-row">
           <div className="flex items-center gap-3">
             <span className="rounded-full bg-muted p-2">
               <UserRoundCheck className="h-5 w-5 text-muted-foreground" />
             </span>
             <div>
-              <p className="font-semibold text-foreground">
+              <p className="text-foreground">
                 Logged in as {user.user_metadata?.full_name}
               </p>
               <p className="text-sm text-muted-foreground">{user.email}</p>
@@ -66,9 +66,10 @@ export const AccountSection = ({
           </div>
 
           <Button
-            variant="link"
             onClick={() => handleSignOut()}
-            className="underline"
+            size="sm"
+            variant="outline"
+            className="self-start"
           >
             {signingOut ? "Signing out..." : "Sign Out"}
           </Button>
