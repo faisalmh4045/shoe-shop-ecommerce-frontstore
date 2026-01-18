@@ -7,6 +7,10 @@ import ProductCard from "@/components/shared/ProductCard";
 import LoadingSpinner from "@/components/shared/LoadingSpinner";
 import { useCategories } from "@/hooks/useCategories";
 import { useCollectionProductsQuery } from "@/hooks/useQueries";
+import {
+  FEATURED_COLLECTION_SLUG,
+  FEATURED_PRODUCTS_LIMIT,
+} from "@/lib/constants";
 
 const heroSlides = [
   {
@@ -41,9 +45,12 @@ const heroSlides = [
 const HomePage = () => {
   const categories = useCategories();
 
-  // Fetch the "best-sellers" collection products, limited to 8 items.
+  // Fetch the featured products
   const { data: collectionData, isLoading: collectionLoading } =
-    useCollectionProductsQuery("best-sellers", 8);
+    useCollectionProductsQuery(
+      FEATURED_COLLECTION_SLUG,
+      FEATURED_PRODUCTS_LIMIT,
+    );
 
   const collectionTitle = collectionData?.collection?.title;
   const products = collectionData?.products || [];
@@ -87,7 +94,7 @@ const HomePage = () => {
             </Button>
           </div>
           <div className="grid grid-cols-2 gap-3 sm:gap-6 md:grid-cols-3 xl:grid-cols-4">
-            {products.slice(0, 8).map((product) => (
+            {products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>

@@ -5,6 +5,7 @@ import Pagination from "@/components/shared/Pagination";
 import LoadingSpinner from "@/components/shared/LoadingSpinner";
 import ProductCard from "@/components/shared/ProductCard";
 import { useSearchProductsQuery } from "@/hooks/useQueries";
+import { SEARCH_RESULTS_PER_PAGE } from "@/lib/constants";
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
@@ -104,7 +105,7 @@ const SearchPage = () => {
       <Pagination
         currentPage={page}
         totalItems={totalProducts}
-        itemsPerPage={8}
+        itemsPerPage={SEARCH_RESULTS_PER_PAGE}
         onPageChange={goToPage}
       />
     </div>

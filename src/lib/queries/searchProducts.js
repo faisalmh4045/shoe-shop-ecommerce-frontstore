@@ -1,10 +1,9 @@
+import { SEARCH_RESULTS_PER_PAGE } from "@/lib/constants";
 import { supabase } from "../supabase/client";
 
-const ITEMS_PER_PAGE = 8;
-
 export const searchProducts = async (searchQuery, page = 1) => {
-  const from = (page - 1) * ITEMS_PER_PAGE;
-  const to = from + ITEMS_PER_PAGE - 1;
+  const from = (page - 1) * SEARCH_RESULTS_PER_PAGE;
+  const to = from + SEARCH_RESULTS_PER_PAGE - 1;
 
   const { data, error, count } = await supabase
     .from("products")
