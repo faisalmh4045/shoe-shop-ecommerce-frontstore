@@ -1,6 +1,7 @@
 import { Outlet } from "react-router";
 import Navbar from "./Navbar";
 import Breadcrumbs from "./Breadcrumbs";
+import Footer from "./Footer";
 import OffCanvasCart from "./OffCanvasCart";
 import { useSelector } from "react-redux";
 import { selectAuthLoading } from "@/store/authSlice";
@@ -20,6 +21,7 @@ const Layout = () => {
         <Breadcrumbs />
         <Outlet />
       </main>
+      <Footer />
       <OffCanvasCart />
       <Toaster theme="light" richColors dismissable />
     </div>
