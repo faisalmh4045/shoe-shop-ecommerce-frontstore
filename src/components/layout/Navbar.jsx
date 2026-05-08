@@ -3,7 +3,16 @@ import { Link, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsAuthenticated, signOut } from "@/store/authSlice";
 import { openCart, selectCartItemCount } from "@/store/cartSlice";
-import { Menu, Search, ShoppingBag, User, X } from "lucide-react";
+import {
+  Menu,
+  Search,
+  ShoppingBag,
+  User,
+  X,
+  Sun,
+  Moon,
+  Monitor,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -23,17 +32,20 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useCategories } from "@/hooks/useCategories";
 import { toast } from "sonner";
+import { useTheme } from "@/context/theme";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cartItemCount = useSelector(selectCartItemCount);
   const isAuthenticated = useSelector(selectIsAuthenticated);
+  const { theme, setTheme, themes } = useTheme();
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
+  const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
 
   const allCategories = useCategories();
   const navCategories = allCategories.filter((cat) => cat.include_in_nav);
@@ -138,6 +150,44 @@ const Navbar = () => {
                 </Badge>
               )}
             </Button>
+
+            {/* Theme Toggle */}
+            <DropdownMenu
+              open={isThemeMenuOpen}
+              onOpenChange={setIsThemeMenuOpen}
+            >
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  {theme === themes.LIGHT ? (
+                    <Sun size={20} />
+                  ) : theme === themes.DARK ? (
+                    <Moon size={20} />
+                  ) : (
+                    <Monitor size={20} />
+                  )}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-32">
+                <DropdownMenuItem
+                  onClick={() => setTheme(themes.LIGHT)}
+                  className={theme === themes.LIGHT ? "bg-accent" : ""}
+                >
+                  Light
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => setTheme(themes.DARK)}
+                  className={theme === themes.DARK ? "bg-accent" : ""}
+                >
+                  Dark
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => setTheme(themes.SYSTEM)}
+                  className={theme === themes.SYSTEM ? "bg-accent" : ""}
+                >
+                  System
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
 
             {/* Account Dropdown */}
             <DropdownMenu>
