@@ -13,6 +13,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signUp } from "@/store/authSlice";
 import { Link } from "react-router";
+import { Eye, EyeOff } from "lucide-react";
 
 const SignupPage = ({ className, ...props }) => {
   const dispatch = useDispatch();
@@ -20,6 +21,8 @@ const SignupPage = ({ className, ...props }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showRepeatPassword, setShowRepeatPassword] = useState(false);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -99,33 +102,59 @@ const SignupPage = ({ className, ...props }) => {
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
+
+                {/* Password */}
                 <div className="grid gap-2">
-                  <div className="flex items-center">
-                    <Label htmlFor="password">Password</Label>
+                  <Label htmlFor="password">Password</Label>
+
+                  <div className="relative">
+                    <Input
+                      autoComplete="new-password"
+                      id="password"
+                      placeholder="••••••••"
+                      type={showPassword ? "text" : "password"}
+                      required
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="pr-10"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute top-1/2 right-3 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                    >
+                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
                   </div>
-                  <Input
-                    autoComplete="new-password"
-                    id="password"
-                    placeholder="••••••••"
-                    type="password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
                 </div>
+
+                {/* Repeat Password */}
                 <div className="grid gap-2">
-                  <div className="flex items-center">
-                    <Label htmlFor="repeat-password">Repeat Password</Label>
+                  <Label htmlFor="repeat-password">Repeat Password</Label>
+
+                  <div className="relative">
+                    <Input
+                      autoComplete="new-password"
+                      id="repeat-password"
+                      placeholder="••••••••"
+                      type={showRepeatPassword ? "text" : "password"}
+                      required
+                      value={repeatPassword}
+                      onChange={(e) => setRepeatPassword(e.target.value)}
+                      className="pr-10"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowRepeatPassword(!showRepeatPassword)}
+                      className="absolute top-1/2 right-3 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                    >
+                      {showRepeatPassword ? (
+                        <EyeOff size={18} />
+                      ) : (
+                        <Eye size={18} />
+                      )}
+                    </button>
                   </div>
-                  <Input
-                    autoComplete="new-password"
-                    id="repeat-password"
-                    placeholder="••••••••"
-                    type="password"
-                    required
-                    value={repeatPassword}
-                    onChange={(e) => setRepeatPassword(e.target.value)}
-                  />
                 </div>
                 {error && <p className="text-sm text-red-500">{error}</p>}
                 <Button type="submit" className="w-full" disabled={isLoading}>
