@@ -12,6 +12,7 @@ import {
   Sun,
   Moon,
   Monitor,
+  Check,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -100,6 +101,36 @@ const Navbar = () => {
                     </Link>
                   ))}
                 </nav>
+                <div className="mt-auto border-t py-2">
+                  <div className="flex items-center justify-center gap-2">
+                    <Button
+                      variant={theme === themes.LIGHT ? "default" : "ghost"}
+                      size="icon"
+                      onClick={() => setTheme(themes.LIGHT)}
+                      className="rounded-full"
+                    >
+                      <Sun size={18} />
+                    </Button>
+
+                    <Button
+                      variant={theme === themes.DARK ? "default" : "ghost"}
+                      size="icon"
+                      onClick={() => setTheme(themes.DARK)}
+                      className="rounded-full"
+                    >
+                      <Moon size={18} />
+                    </Button>
+
+                    <Button
+                      variant={theme === themes.SYSTEM ? "default" : "ghost"}
+                      size="icon"
+                      onClick={() => setTheme(themes.SYSTEM)}
+                      className="rounded-full"
+                    >
+                      <Monitor size={18} />
+                    </Button>
+                  </div>
+                </div>
               </SheetContent>
             </Sheet>
 
@@ -150,44 +181,59 @@ const Navbar = () => {
                 </Badge>
               )}
             </Button>
-
+            
             {/* Theme Toggle */}
-            <DropdownMenu
-              open={isThemeMenuOpen}
-              onOpenChange={setIsThemeMenuOpen}
-            >
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  {theme === themes.LIGHT ? (
-                    <Sun size={20} />
-                  ) : theme === themes.DARK ? (
-                    <Moon size={20} />
-                  ) : (
-                    <Monitor size={20} />
-                  )}
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-32">
-                <DropdownMenuItem
-                  onClick={() => setTheme(themes.LIGHT)}
-                  className={theme === themes.LIGHT ? "bg-accent" : ""}
-                >
-                  Light
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => setTheme(themes.DARK)}
-                  className={theme === themes.DARK ? "bg-accent" : ""}
-                >
-                  Dark
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => setTheme(themes.SYSTEM)}
-                  className={theme === themes.SYSTEM ? "bg-accent" : ""}
-                >
-                  System
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <div className="hidden lg:block">
+              <DropdownMenu
+                open={isThemeMenuOpen}
+                onOpenChange={setIsThemeMenuOpen}
+              >
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon">
+                    {theme === themes.DARK ||
+                    (theme === themes.SYSTEM &&
+                      window.matchMedia("(prefers-color-scheme: dark)")
+                        .matches) ? (
+                      <Moon size={20} />
+                    ) : (
+                      <Sun size={20} />
+                    )}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-32">
+                  <DropdownMenuItem
+                    onClick={() => setTheme(themes.LIGHT)}
+                    className={theme === themes.LIGHT ? "bg-accent" : ""}
+                  >
+                    <Sun size={16} />
+                    <span>Light</span>
+                    {theme === themes.LIGHT && (
+                      <Check size={14} className="ml-auto" />
+                    )}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => setTheme(themes.DARK)}
+                    className={theme === themes.DARK ? "bg-accent" : ""}
+                  >
+                    <Moon size={16} />
+                    <span>Dark</span>
+                    {theme === themes.DARK && (
+                      <Check size={14} className="ml-auto" />
+                    )}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => setTheme(themes.SYSTEM)}
+                    className={theme === themes.SYSTEM ? "bg-accent" : ""}
+                  >
+                    <Monitor size={16} />
+                    <span>System</span>
+                    {theme === themes.SYSTEM && (
+                      <Check size={14} className="ml-auto" />
+                    )}
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
 
             {/* Account Dropdown */}
             <DropdownMenu>
