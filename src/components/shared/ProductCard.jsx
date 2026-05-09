@@ -10,7 +10,7 @@ const ProductCard = ({ product, categorySlug }) => {
 
   return (
     <Link to={href}>
-      <Card className="h-full overflow-hidden rounded-md border-0 p-0 md:rounded-lg">
+      <Card className="h-full overflow-hidden rounded-md border p-0 md:rounded-lg shadow-none">
         <CardContent className="p-0">
           <div className="aspect-square">
             <img

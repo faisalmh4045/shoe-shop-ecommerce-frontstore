@@ -98,7 +98,7 @@ export const AccountSection = ({
                   variant="link"
                   size="sm"
                   onClick={() => setShowLogin(true)}
-                  className="ps-0 text-blue-600"
+                  className="ps-0"
                 >
                   Sign in
                 </Button>

@@ -1,28 +1,28 @@
 import { Badge } from "@/components/ui/badge";
 
+const variants = {
+  order: {
+    NEW: "bg-status-info-bg    text-status-info-fg",
+    PROCESSING: "bg-status-warning-bg text-status-warning-fg",
+    COMPLETED: "bg-status-success-bg text-status-success-fg",
+    CANCELED: "bg-status-error-bg   text-status-error-fg",
+  },
+  payment: {
+    PENDING: "bg-status-warning-bg text-status-warning-fg",
+    PAID: "bg-status-success-bg text-status-success-fg",
+    REFUNDED: "bg-status-purple-bg  text-status-purple-fg",
+    CANCELED: "bg-status-error-bg   text-status-error-fg",
+  },
+  shipment: {
+    PENDING: "bg-status-warning-bg text-status-warning-fg",
+    SHIPPED: "bg-status-info-bg    text-status-info-fg",
+    DELIVERED: "bg-status-success-bg text-status-success-fg",
+    CANCELED: "bg-status-error-bg   text-status-error-fg",
+  },
+};
+
 const StatusBadge = ({ type, status }) => {
   if (!type || !status) return null;
-
-  const variants = {
-    order: {
-      NEW: "bg-blue-100 text-blue-800",
-      PROCESSING: "bg-yellow-100 text-yellow-800",
-      COMPLETED: "bg-green-100 text-green-800",
-      CANCELED: "bg-red-100 text-red-800",
-    },
-    payment: {
-      PENDING: "bg-yellow-100 text-yellow-800",
-      PAID: "bg-green-100 text-green-800",
-      REFUNDED: "bg-purple-100 text-purple-800",
-      CANCELED: "bg-red-100 text-red-800",
-    },
-    shipment: {
-      PENDING: "bg-yellow-100 text-yellow-800",
-      SHIPPED: "bg-blue-100 text-blue-800",
-      DELIVERED: "bg-green-100 text-green-800",
-      CANCELED: "bg-red-100 text-red-800",
-    },
-  };
 
   const classes = variants[type]?.[status];
 

@@ -22,7 +22,7 @@ const CheckoutSuccessPage = () => {
   if (error || !order) {
     return (
       <div className="mx-auto max-w-7xl px-4 py-16 text-center">
-        <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
+        <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-muted">
           <Package size={32} />
         </div>
         <h2 className="mb-2 text-2xl font-bold text-foreground">
@@ -48,7 +48,7 @@ const CheckoutSuccessPage = () => {
   return (
     <div className="mx-auto max-w-7xl px-4 py-12">
       <div className="mx-auto max-w-lg text-center">
-        <CheckCircle size={64} className="mx-auto mb-6 text-green-600" />
+        <CheckCircle size={64} className="mx-auto mb-6 text-primary" />
         <h1 className="mb-3 text-2xl font-bold text-foreground md:text-3xl">
           Thank You for Your Order!
         </h1>

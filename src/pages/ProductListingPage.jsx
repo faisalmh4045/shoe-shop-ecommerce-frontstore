@@ -171,7 +171,7 @@ const ProductListingPage = () => {
                 </>
               ) : (
                 <div className="py-16 text-center">
-                  <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-full bg-gray-100">
+                  <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-full bg-muted">
                     <Box size={48} />
                   </div>
                   <h2 className="mb-2 text-2xl font-bold text-foreground">

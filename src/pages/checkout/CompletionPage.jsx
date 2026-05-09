@@ -99,7 +99,7 @@ const CompletionPageContent = () => {
           <CardContent>
             {status === "loading" && (
               <>
-                <Spinner className="mb-4 inline-block size-14 text-blue-500" />
+                <Spinner className="mb-4 inline-block size-14 text-status-info-fg" />
                 <h2 className="mb-2 text-2xl font-bold text-foreground">
                   Verifying Payment
                 </h2>
@@ -111,25 +111,25 @@ const CompletionPageContent = () => {
 
             {status === "succeeded" && (
               <>
-                <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
-                  <CheckCircle className="h-8 w-8 text-green-600" />
+                <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-status-success-bg">
+                  <CheckCircle className="h-8 w-8 text-status-success-fg" />
                 </div>
-                <h2 className="mb-2 text-2xl font-bold text-green-600">
+                <h2 className="mb-2 text-2xl font-bold text-status-success-fg">
                   Payment Successful!
                 </h2>
                 <p className="mb-4 text-muted-foreground">
                   Your order has been confirmed. Redirecting to order details...
                 </p>
-                <Spinner className="inline-block size-6 text-green-600" />
+                <Spinner className="inline-block size-6 text-status-success-fg" />
               </>
             )}
 
             {status === "processing" && (
               <>
-                <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-yellow-100">
-                  <Clock className="h-8 w-8 text-yellow-600" />
+                <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-status-warning-bg">
+                  <Clock className="h-8 w-8 text-status-warning-fg" />
                 </div>
-                <h2 className="mb-2 text-2xl font-bold text-yellow-600">
+                <h2 className="mb-2 text-2xl font-bold text-status-warning-fg">
                   Payment Processing
                 </h2>
                 <p className="text-muted-foreground">
@@ -141,10 +141,10 @@ const CompletionPageContent = () => {
 
             {status === "failed" && (
               <>
-                <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-red-100">
-                  <X className="h-8 w-8 text-red-600" />
+                <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-status-error-bg">
+                  <X className="h-8 w-8 text-status-error-fg" />
                 </div>
-                <h2 className="mb-2 text-2xl font-bold text-red-600">
+                <h2 className="mb-2 text-2xl font-bold text-status-error-fg">
                   Payment Failed
                 </h2>
                 <p className="mb-6 text-muted-foreground">{error}</p>
@@ -156,10 +156,12 @@ const CompletionPageContent = () => {
 
             {status === "error" && (
               <>
-                <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-red-100">
-                  <AlertTriangle className="h-8 w-8 text-red-600" />
+                <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-status-error-bg">
+                  <AlertTriangle className="h-8 w-8 text-status-error-fg" />
                 </div>
-                <h2 className="mb-2 text-2xl font-bold text-red-600">Error</h2>
+                <h2 className="mb-2 text-2xl font-bold text-status-error-fg">
+                  Error
+                </h2>
                 <p className="mb-6 text-muted-foreground">{error}</p>
                 <div className="flex justify-center gap-3">
                   <Button size="sm" onClick={() => navigate("/checkout")}>

@@ -56,7 +56,7 @@ const OrdersTab = () => {
       {orders.length === 0 ? (
         <Card>
           <CardContent className="py-12 text-center">
-            <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
+            <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-muted">
               <ShoppingBag size={32} />
             </div>
             <h3 className="mb-2 font-medium text-foreground">No orders yet</h3>

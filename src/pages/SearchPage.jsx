@@ -36,7 +36,7 @@ const SearchPage = () => {
     return (
       <div className="mx-auto max-w-7xl px-4 py-16">
         <div className="mx-auto max-w-md text-center">
-          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-full bg-gray-100">
+          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-full bg-muted">
             <SearchIcon size={48} />
           </div>
           <h2 className="mb-2 text-2xl font-bold text-foreground">
@@ -64,7 +64,7 @@ const SearchPage = () => {
     return (
       <div className="mx-auto max-w-7xl px-4 py-16">
         <div className="mx-auto max-w-md text-center">
-          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-full bg-gray-100">
+          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-full bg-muted">
             <SearchIcon size={48} />
           </div>
           <h2 className="mb-2 text-2xl font-bold text-foreground">

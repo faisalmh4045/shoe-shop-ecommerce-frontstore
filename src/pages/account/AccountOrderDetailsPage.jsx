@@ -21,7 +21,7 @@ const AccountOrderDetailsPage = () => {
   if (error || !order) {
     return (
       <div className="mx-auto max-w-md py-12 text-center">
-        <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
+        <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-muted">
           <Package size={32} />
         </div>
 
