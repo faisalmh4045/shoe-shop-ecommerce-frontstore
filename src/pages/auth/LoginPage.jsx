@@ -96,6 +96,34 @@ const LoginForm = ({ className, ...props }) => {
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? "Logging in..." : "Login"}
               </Button>
+
+              {/* Demo section */}
+              <div className="rounded-lg border border-dashed border-border bg-muted p-4 text-sm text-muted-foreground">
+                <div className="flex items-center justify-between">
+                  <p className="font-medium">Demo customer account</p>
+
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setEmail("customer@shoeshop.com");
+                      setPassword("12345678");
+                    }}
+                  >
+                    Use demo
+                  </Button>
+                </div>
+
+                <p>
+                  Email:{" "}
+                  <span className="font-medium">customer@shoeshop.com</span>
+                </p>
+
+                <p>
+                  Password: <span className="font-medium">12345678</span>
+                </p>
+              </div>
             </div>
             <div className="mt-6 text-center text-sm">
               <Link
